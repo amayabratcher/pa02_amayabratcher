@@ -35,7 +35,7 @@ int main(int argc, char** argv){
     }
   
     // Create an object of a STL data-structure to store all the movies
-
+    vector<Movie> movies;
     string line, movieName;
     double movieRating;
     // Read each file and store the name and rating
@@ -44,11 +44,18 @@ int main(int argc, char** argv){
             // to construct your Movie objects
             // cout << movieName << " has rating " << movieRating << endl;
             // insert elements into your data structure
+            Movie movie(movieName,movieRating);
+            cout << movieName <<" has rating " << movieRating << endl;
+            movies.push_back(movie);
+            sort(movies.begin(), movies.end());
     }
 
     movieFile.close();
 
     if (argc == 2){
+            for(const Movie& movie : movies){
+                cout << movie << endl;
+            }
             //print all the movies in ascending alphabetical order of movie names
             return 0;
     }
@@ -70,11 +77,23 @@ int main(int argc, char** argv){
     //  For each prefix,
     //  Find all movies that have that prefix and store them in an appropriate data structure
     //  If no movie with that prefix exists print the following message
-    cout << "No movies found with prefix "<<"<replace with prefix>" << endl;
-
+    for(const string& prefix :prefixes){
+        vector<Movie> result = findPrefix(prefix, movies);
+        if(result.empty()){
+            cout << "No movies found with prefix "<< prefix << endl;
+        }
+        else{
+            for(const Movie& movie: result){
+                cout << movie << endl;
+            }
+            Movie bestMovie = bestRated(result);
+             cout << "Best movie with prefix " << prefix << " is: " << bestMovie.getName() << " with rating " << std::fixed << std::setprecision(1) << bestMovie.getRating() << endl;
+        }
+    }
+       
     //  For each prefix,
     //  Print the highest rated movie with that prefix if it exists.
-    cout << "Best movie with prefix " << "<replace with prefix>" << " is: " << "replace with movie name" << " with rating " << std::fixed << std::setprecision(1) << "replace with movie rating" << endl;
+   
 
     return 0;
 }
