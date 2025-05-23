@@ -100,7 +100,23 @@ int main(int argc, char** argv){
 }
 
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
-
+// In my solution my running time is O(m*(n*l+ k log k))
+// where there are n movies in the dataset.
+//there are m prefixes specified in a given run of your program.
+//at most k movies begin with each prefix.
+//l is the maximum number of characters in a movie name
+// the n * l comes from the beginning of my code
+// first my code checks from the beginning to see if any of the 
+// movies names start with the same prefix 
+// if it is the worse case senario that is not found until the end of the
+// set of movie names
+// then my code stores the all the values from that point on alphbetically
+// that contain that prefix
+//after that i then used a custom sort algorithm in order to rearrange my vector
+// most sort algorithms run at a running time of n log n in this case it is k log k
+// since these loops are seperate and not nested they are added together
+//and then since m is the number of prefixes m is then multiplied by (n*l + k log k)
+// giving us a worse case time complexity of O(m*(n*l+k log k))
 bool parseLine(string &line, string &movieName, double &movieRating) {
     int commaIndex = line.find_last_of(",");
     movieName = line.substr(0, commaIndex);
