@@ -86,7 +86,7 @@ int main(int argc, char** argv){
                 cout << movie << endl;
             }
             Movie bestMovie = bestRated(result);
-             cout << "Best movie with prefix " << prefix << " is: " << bestMovie.getName() << " with rating " << std::fixed << std::setprecision(1) << bestMovie.getRating() << endl;
+             cout << bestMovie << endl;
         }
     }
        
