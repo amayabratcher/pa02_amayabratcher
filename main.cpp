@@ -35,7 +35,7 @@ int main(int argc, char** argv){
     }
   
     // Create an object of a STL data-structure to store all the movies
-    vector<Movie> movies;
+    set<Movie> movies;
     string line, movieName;
     double movieRating;
     // Read each file and store the name and rating
@@ -46,8 +46,8 @@ int main(int argc, char** argv){
             // insert elements into your data structure
             Movie movie(movieName,movieRating);
             cout << movieName <<" has rating " << movieRating << endl;
-            movies.push_back(movie);
-            sort(movies.begin(), movies.end());
+            movies.insert(movie);
+            
     }
 
     movieFile.close();
@@ -78,7 +78,7 @@ int main(int argc, char** argv){
     //  Find all movies that have that prefix and store them in an appropriate data structure
     //  If no movie with that prefix exists print the following message
     for(const string& prefix :prefixes){
-        vector<Movie> result = findPrefix(prefix, movies);
+        set<Movie> result = findPrefix(prefix, movies);
         if(result.empty()){
             cout << "No movies found with prefix "<< prefix << endl;
         }

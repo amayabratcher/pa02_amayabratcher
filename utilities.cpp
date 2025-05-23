@@ -2,33 +2,50 @@
 #include <string>
 #include <cstring>
 #include <cctype>
+#include <iterator>
 using namespace std;
 
-vector<Movie> findPrefix(string prefix, vector<Movie> &allMovies){
-    vector<Movie> hasPrefix;
+set<Movie> findPrefix(string prefix, set<Movie> &allMovies){
+    // vector<Movie> hasPrefix;
+    // int pSize = prefix.size();
+    // int startIdx;
+    // for(int i = 0; i < allMovies.size(); i++){
+    //     string name = allMovies[i].getName();
+    //     if(name.substr(0,pSize) == prefix){
+    //         startIdx = i;
+    //         break;
+    //     }
+    // }
+    // auto it = allMovies.begin()+startIdx;
+    // while(startIdx < allMovies.size() && ((*it).getName()).substr(0,pSize) == prefix){
+    //     hasPrefix.push_back(*it);
+    //     it++;
+    // }
+    // return hasPrefix;
+
+    set<Movie> hasPrefix;
     int pSize = prefix.size();
-    int startIdx;
-    for(int i = 0; i < allMovies.size(); i++){
-        string name = allMovies[i].getName();
+    auto startIdx = allMovies.begin();
+    for(auto it = allMovies.begin(); it != allMovies.end(); it++){
+        string name = it -> getName();
         if(name.substr(0,pSize) == prefix){
-            startIdx = i;
-            break;
+          startIdx = it;
+          break;
         }
     }
-    auto it = allMovies.begin()+startIdx;
-    while(startIdx < allMovies.size() && ((*it).getName()).substr(0,pSize) == prefix){
-        hasPrefix.push_back(*it);
-        it++;
+    while(startIdx != allMovies.end() && startIdx -> getName().substr(0,pSize) == prefix){
+      hasPrefix.insert(*startIdx);
+      startIdx++;
     }
     return hasPrefix;
   }
 
-  Movie bestRated(vector<Movie> hasPrefix){
-    Movie bestRated = hasPrefix[0];
-    for(int x = 0; x < hasPrefix.size(); x++){
-        if(bestRated.getRating() < hasPrefix[x].getRating()){
-            bestRated = hasPrefix[x];
-        }
+  Movie bestRated(set<Movie> hasPrefix){
+    Movie bestRated = *hasPrefix.begin();
+    for(const Movie& movie: hasPrefix){
+      if(bestRated.getRating() < movie.getRating()){
+        bestRated = movie;
+      }
     }
     return bestRated;
   }

@@ -7,8 +7,9 @@
 #include <cctype>
 #include <iostream>
 #include <vector>
+#include <set>
 using namespace std;
 
-vector<Movie> findPrefix(string prefix, vector<Movie> &allMovies);
-Movie bestRated(vector<Movie> hasPrefix);
+set<Movie> findPrefix(string prefix, set<Movie> &allMovies);
+Movie bestRated(set<Movie> hasPrefix);
 #endif

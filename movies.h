@@ -24,8 +24,8 @@ class Movie{
     bool operator<=(const Movie& other) const;
     bool operator==(const Movie& other)const;
     friend ostream& operator<<(ostream& out, const Movie& movie);
-    string getName();
-    double getRating();
+    string getName() const;
+    double getRating() const;
 };
 
 

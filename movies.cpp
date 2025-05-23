@@ -40,11 +40,11 @@ ostream& operator<<(ostream& out, const Movie& movie){
     return out;
 }
 
-string Movie::getName(){
+string Movie::getName() const{
     return this -> name;
 }
 
-double Movie::getRating(){
+double Movie::getRating() const{
     return this -> rating;
 }
 
