@@ -45,7 +45,6 @@ int main(int argc, char** argv){
             // cout << movieName << " has rating " << movieRating << endl;
             // insert elements into your data structure
             Movie movie(movieName,movieRating);
-            cout << movieName <<" has rating " << movieRating << endl;
             movies.insert(movie);
             
     }
