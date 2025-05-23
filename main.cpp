@@ -78,7 +78,7 @@ int main(int argc, char** argv){
     //  For each prefix,
     //  Find all movies that have that prefix and store them in an appropriate data structure
     //  If no movie with that prefix exists print the following message
-    auto start = chrono::high_resolution_clock::now();
+    // auto start = chrono::high_resolution_clock::now();
     for(const string& prefix :prefixes){
         vector<Movie> result = findPrefix(prefix, movies);
         if(result.empty()){
@@ -105,10 +105,10 @@ int main(int argc, char** argv){
     //  For each prefix,
     //  Print the highest rated movie with that prefix if it exists.
     
-    auto end = chrono::high_resolution_clock::now();
-    double time_ms = chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0;
-    cout << endl;
-    cout << " TIME: "<< time_ms << endl;
+    // auto end = chrono::high_resolution_clock::now();
+    // double time_ms = chrono::duration_cast<chrono::microseconds>(end - start).count() / 1000.0;
+    // cout << endl;
+    // cout << " TIME: "<< time_ms << endl;
 
     return 0;
 }
@@ -132,7 +132,7 @@ int main(int argc, char** argv){
 //and then since m is the number of prefixes m is then multiplied by (n*l + k log k)
 // giving us a worse case time complexity of O(m*(n*l+k log k))
 //
-// part 3b:
+// part 3b: 488.8 miliseconds 439.3 miliseconds 808.9 miliseconds 81616.8 miliseconds
 //
 //
 ///part 3c:  I designed my code for low time complexity I was not able to achieve this my algorithm isnt too bad but I wasnt able to achieve this 
