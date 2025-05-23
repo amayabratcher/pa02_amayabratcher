@@ -77,16 +77,18 @@ int main(int argc, char** argv){
     //  Find all movies that have that prefix and store them in an appropriate data structure
     //  If no movie with that prefix exists print the following message
     for(const string& prefix :prefixes){
-        set<Movie> result = findPrefix(prefix, movies);
+        vector<Movie> result = findPrefix(prefix, movies);
         if(result.empty()){
             cout << "No movies found with prefix "<< prefix << endl;
+            cout <<  endl;
         }
         else{
+            bestRatedSort(result);
             for(const Movie& movie: result){
                 cout << movie << endl;
             }
-            Movie bestMovie = bestRated(result);
-             cout << bestMovie << endl;
+             
+            cout << "Best movie with prefix " << prefix << " is: " << result[0].getName() << " with rating " << std::fixed << std::setprecision(1) << result[0].getRating() << endl;
         }
     }
        

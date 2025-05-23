@@ -10,6 +10,10 @@
 #include <set>
 using namespace std;
 
-set<Movie> findPrefix(string prefix, set<Movie> &allMovies);
-Movie bestRated(set<Movie> hasPrefix);
+
+
+vector<Movie> findPrefix(string prefix, set<Movie> &allMovies);
+void bestRatedSort(vector<Movie> &hasPrefix);
+bool compareMoviesByRating(const Movie& one, const Movie& two);
+
 #endif

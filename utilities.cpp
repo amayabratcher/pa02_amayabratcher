@@ -3,9 +3,10 @@
 #include <cstring>
 #include <cctype>
 #include <iterator>
+#include <algorithm>
 using namespace std;
 
-set<Movie> findPrefix(string prefix, set<Movie> &allMovies){
+vector<Movie> findPrefix(string prefix, set<Movie> &allMovies){
     // vector<Movie> hasPrefix;
     // int pSize = prefix.size();
     // int startIdx;
@@ -23,7 +24,7 @@ set<Movie> findPrefix(string prefix, set<Movie> &allMovies){
     // }
     // return hasPrefix;
 
-    set<Movie> hasPrefix;
+    vector<Movie> hasPrefix;
     int pSize = prefix.size();
     auto startIdx = allMovies.begin();
     for(auto it = allMovies.begin(); it != allMovies.end(); it++){
@@ -34,18 +35,21 @@ set<Movie> findPrefix(string prefix, set<Movie> &allMovies){
         }
     }
     while(startIdx != allMovies.end() && startIdx -> getName().substr(0,pSize) == prefix){
-      hasPrefix.insert(*startIdx);
+      hasPrefix.push_back(*startIdx);
       startIdx++;
     }
     return hasPrefix;
   }
 
-  Movie bestRated(set<Movie> hasPrefix){
-    Movie bestRated = *hasPrefix.begin();
-    for(const Movie& movie: hasPrefix){
-      if(bestRated.getRating() < movie.getRating()){
-        bestRated = movie;
-      }
+  bool compareMoviesByRating(const Movie& one, const Movie& two){
+    if(one.getRating()  != two.getRating()){
+      return one.getRating() > two.getRating();
     }
-    return bestRated;
+    return one.getName() < two.getName();
+  }
+
+  void bestRatedSort(vector<Movie> &hasPrefix){
+    sort(hasPrefix.begin(),hasPrefix.end(), compareMoviesByRating);
+    
+    
   }
